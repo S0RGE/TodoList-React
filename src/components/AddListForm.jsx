@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
+import {OutlinedInput} from '@mui/material';
 
 const AddListForm = ({ addTodo }) => {
   const [todo, setTodo] = useState("");
@@ -15,16 +17,21 @@ const AddListForm = ({ addTodo }) => {
 
   return (
     <div>
-      <form onSubmit={submitHandler}>
-        <input
-          type="text"
+      <form className="inputForm" onSubmit={submitHandler}>
+        <OutlinedInput
+          autoFocus
+          fullWidth
+          placeholder="Add new todo"
           value={todo}
           onChange={(event) => setTodo(event.target.value)}
-        />
-        <button type="submit">Add todo</button>
+        />       
       </form>
     </div>
   );
+};
+
+AddListForm.propTypes = {
+  addTodo: PropTypes.func.isRequired,
 };
 
 export default AddListForm;
